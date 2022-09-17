@@ -4,7 +4,7 @@ services:
     container_name: jenkins
     image: jenkins/jenkins:lts
     networks:
-      - fitnesslabs
+      - virtuallabs
     ports:
       - "8080:8080"
     environment:
@@ -14,18 +14,18 @@ services:
     privileged: true
   jira:
     container_name: jira
-    image: jira-ca:latest
+    image: atlassian/jira-software
     #image: dchevell/jira-software:latest
     networks:
-      - fitnesslabs
+      - virtuallabs
     ports:
       - 8888:8080      
   socat:
     container_name: socat
-    image: socat-ca:latest
-   #image: alpine/socat:latest
+    # image: socat-ca:latest
+    image: alpine/socat:latest
     networks:
-      - fitnesslabs
+      - virtuallabs
     command: tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -33,5 +33,5 @@ services:
       - "2375"
 
 networks:
-  fitnesslabs:
-    name: fitnesslabs
+  cloudacademylabs:
+    name: cloudacademylabs
