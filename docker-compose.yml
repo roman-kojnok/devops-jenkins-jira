@@ -15,14 +15,12 @@ services:
   jira:
     container_name: jira
     image: atlassian/jira-software
-    #image: dchevell/jira-software:latest
     networks:
       - virtuallabs
     ports:
       - 8888:8080      
   socat:
     container_name: socat
-    # image: socat-ca:latest
     image: alpine/socat:latest
     networks:
       - virtuallabs
@@ -33,5 +31,5 @@ services:
       - "2375"
 
 networks:
-  cloudacademylabs:
-    name: cloudacademylabs
+  virtuallabs:
+    name: virtuallabs
